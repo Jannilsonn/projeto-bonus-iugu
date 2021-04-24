@@ -7,16 +7,17 @@ class FileData
   end
 
   def self.build(invoices)
-    return 'Only array is accepted as parameter' if invoices.class != Array
+    return 'Only (Array) is accepted as parameter' if invoices.class != Array
 
     file_data = invoices.map do |invoice|
       new(
         key: "#{Validate.file_name(invoice.pay_type, invoice.company)}",
         body: [
-          "B #{Validate.invoice_token(invoice.token)}"\
-          " #{Validate.invoice_due_date(invoice.expiration_date)}"\
-          " #{Validate.invoice_value(invoice.value)}"\
-          " #{Validate.invoice_status(invoice.status)}\n"
+          "#{Validate.invoice_token(invoice.token)}"\
+          "#{Validate.invoice_due_date(invoice.expiration_date)}"\
+          "#{Validate.invoice_return_date(invoice.return_date)}"\
+          "#{Validate.invoice_value(invoice.value)}"\
+          "#{Validate.invoice_status(invoice.status)}"
         ]
       )
     end
