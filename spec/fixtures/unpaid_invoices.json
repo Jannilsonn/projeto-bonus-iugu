@@ -1,0 +1,66 @@
+[
+    {
+        "company": "CODEPLAY",
+        "pay_type": "PIX",
+        "token": "DU84G3F7HF8H49H",
+        "expiration_date": "20200415",
+        "value": "0000007500",
+        "status": "01"
+    },
+    {
+        "company": "CODEPLAY",
+        "pay_type": "CARTAODECREDITO",
+        "token": "BH6B34B6J43BH6B3",
+        "expiration_date": "20200417",
+        "value": "0000001000",
+        "status": "01"
+    },
+    {
+        "company": "CODEPLAY",
+        "pay_type": "PIX",
+        "token": "45I4LIU5H4I5H4JD",
+        "expiration_date": "20200420",
+        "value": "0000003050",
+        "status": "01"
+    },
+    {
+        "company": "IUGULITE",
+        "pay_type": "BOLETO",
+        "token": "IUDVBIWUBV328824",
+        "expiration_date": "20200419",
+        "value": "0000008000",
+        "status": "01"
+    },
+    {
+        "company": "CODEPLAY",
+        "pay_type": "BOLETO",
+        "token": "DI3BHUBH43H5BHB5B",
+        "expiration_date": "20200419",
+        "value": "0000003500",
+        "status": "01"
+    },
+    {
+        "company": "IUGULITE",
+        "pay_type": "CARTAODECREDITO",
+        "token": "B436BJ3L2J634B6D",
+        "expiration_date": "20200420",
+        "value": "0000005499",
+        "status": "01"
+    },
+    {
+        "company": "IUGULITE",
+        "pay_type": "CARTAODECREDITO",
+        "token": "3NJ6INJ56BJ45BJ5N4",
+        "expiration_date": "20200420",
+        "value": "0000010050",
+        "status": "01"
+    },
+    {
+        "company": "IUGULITE",
+        "pay_type": "PIX",
+        "token": "DI3BHUBH43H5BHB5B",
+        "expiration_date": "20200419",
+        "value": "0000003500",
+        "status": "01"
+    }
+]

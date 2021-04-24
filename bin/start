@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+set -e
+
+echo '== iniciando... =='
+echo
+
+rspec
+
+echo
+echo '== finalizado =='
+echo
