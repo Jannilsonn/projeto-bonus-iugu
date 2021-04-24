@@ -18,38 +18,17 @@ class Invoice
   end
 
   def self.create(invoices = all)
-    file_data = invoices.map do |invoice|
-      FileData.new(
-        key: "#{invoice.pay_type}_#{invoice.company}",
-        data: [
-          "B #{invoice.token}"\
-          " #{invoice.expiration_date}"\
-          " #{format('%010d', invoice.value.to_i)}"\
-          " #{invoice.status}\n"
-        ]
-      )
-    end
-
-    file_data = file_data.combination(2) do |obj|
-      if obj[0].key == obj[1].key
-        obj[0].data << obj[1].data.join
-        file_data.delete(obj[1])
-      end
-    end
-
-    file_data.each do |data|
-      new_data = ''
-      new_data << "H #{format('%05d', data.data.size.to_i)}\n"
-      new_data << "#{data.data.join}"
-      new_data << "F #{format('%015d', data.data.map { |invoice| invoice.split(" ")[3].to_i }.sum)}"
+    FileData.build(invoices).each do |data|
+      file_data = ''
+      file_data << "H #{Validate.total_invoices(data)}\n"
+      file_data << "#{data.body.join}"
+      file_data << "F #{Validate.total_invoice_amount(data)}"
 
       file = File.new("invoices/unpaid/#{Time.now.strftime("%Y%m%d")}_#{data.key}.TXT", 'w')
-      file.write "#{new_data}"
+      file.write "#{file_data}"
       file.close
       file
     end
-
-    true
   end
 
   def self.pay

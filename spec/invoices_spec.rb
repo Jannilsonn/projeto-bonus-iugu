@@ -12,6 +12,7 @@ describe 'Buscar e criar arquivos em débito e pagos' do
   #TODO: Gera arquivos com dados de cobrança TIMESTAMP_MEIO_PAGAMENTO_EMISSAO.TXT no diretório /debt
   it 'EX: Gerar arquivos não pagos' do
     Invoice.create
+
     expect(File.read("invoices/unpaid/#{Time.now.strftime("%Y%m%d")}_PIX_CODEPLAY.TXT")).to include(
       "B DU84G3F7HF8H49H 20200415 0000007500 01"
     )
