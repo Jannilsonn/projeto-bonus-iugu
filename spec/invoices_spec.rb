@@ -15,7 +15,7 @@ describe 'Gerenciar faturas' do
       Invoice.create
 
       expect(File.read("invoices/unpaid/#{Time.now.strftime("%Y%m%d")}_PIX_EMISSAO.TXT")).to include(
-        "B DU84G3F7HF8H49H 20200415 00000000 0000007500 01"
+        "B 0841908bc678b307185b 20200415 00000000 0000007500 01"
       )
     end
   end
@@ -27,7 +27,7 @@ describe 'Gerenciar faturas' do
       file = File.read("invoices/paid/#{Time.now.strftime("%Y%m%d")}_PIX_RETORNO.TXT.PRONTO")
 
       expect(file).to include(
-        "B DU84G3F7HF8H49H 20200415 #{Time.now.strftime("%Y%m%d")} 0000007500 05"
+        "B 0841908bc678b307185b 20200415 #{Time.now.strftime("%Y%m%d")} 0000007500 05"
       )
     end
 

@@ -19,31 +19,11 @@ class Invoice
   end
 
   def self.create(invoices = unpaid)
-    FileData.build(invoices).each do |data|
-      file_data = ''
-      file_data << "#{Validate.total_invoices(data)}"
-      file_data << "#{data.body.join}"
-      file_data << "#{Validate.total_invoice_amount(data)}"
-
-      file = File.new("invoices/unpaid/#{Time.now.strftime("%Y%m%d")}_#{data.key}.TXT", 'w')
-      file.write "#{file_data}"
-      file.close
-      file
-    end
+    doc(invoices, 'unpaid')
   end
 
   def self.update(invoices)
-    FileData.build(invoices).each do |data|
-      file_data = ''
-      file_data << "#{Validate.total_invoices(data)}"
-      file_data << "#{data.body.join}"
-      file_data << "#{Validate.total_invoice_amount(data)}"
-
-      file = File.new("invoices/paid/#{Time.now.strftime("%Y%m%d")}_#{data.key}.TXT.PRONTO", 'w')
-      file.write "#{file_data}"
-      file.close
-      file
-    end
+    doc(invoices, 'paid')
     done
   end
 
@@ -74,6 +54,26 @@ class Invoice
   def self.done
     Dir.new("./invoices/unpaid").each_child.map  do |file_name|
       system("rm ./invoices/unpaid/#{file_name}")
+    end
+  end
+
+  def self.doc(invoices, folder)
+    extension = (folder == 'paid') ? '.PRONTO' : ''
+
+    files = FileData.build(invoices)
+
+    return files unless files.empty? || files.class == Array
+    
+    files.each do |data|
+      file_data = ''
+      file_data << "#{Validate.total_invoices(total: data)}"
+      file_data << "#{data.body.join}"
+      file_data << "#{Validate.total_invoice_amount(amount: data)}"
+
+      file = File.new("invoices/#{folder}/#{Time.now.strftime("%Y%m%d")}_#{data.key}.TXT#{extension}", 'w')
+      file.write "#{file_data}"
+      file.close
+      file
     end
   end
 end

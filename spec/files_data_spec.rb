@@ -47,7 +47,7 @@ describe 'Formatar dados para criar arquivo' do
     it 'Aceitar apenas array como parametro ao formatar' do
       file_data = FileData.build(invoices)
 
-      expect(file_data).to eq 'Only (Array) is accepted as parameter'
+      expect(file_data).to eq 'ERROR: Only (Array) is accepted as parameter'
     end
   end
 end
