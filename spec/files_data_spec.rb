@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Formatar dados para criar arquivo' do
-  let(:company) {'Code Play'}
+  let(:type) {'EMISSAO'}
   let(:pay_type) {'Boleto'}
   let(:token) {'HS4JSO69SNM48GDU639D'}
   let(:expiration_date) {'2020-04-20'}
@@ -11,7 +11,7 @@ describe 'Formatar dados para criar arquivo' do
   context 'Formatos válidos' do
     let(:invoices) {
       [Invoice.new(
-        company: company,
+        type: type,
         pay_type: pay_type,
         token: token,
         expiration_date: expiration_date,
@@ -23,7 +23,7 @@ describe 'Formatar dados para criar arquivo' do
     it 'Criar uma formatação válida' do
       file_data = FileData.build(invoices)
 
-      expect(file_data[0].key).to eq 'BOLETO_CODEPLAY'
+      expect(file_data[0].key).to eq 'BOLETO_EMISSAO'
       expect(file_data[0].body).to eq ["B HS4JSO69SNM48GDU639D"\
                                   " 20200420"\
                                   " 00000000"\
@@ -35,7 +35,7 @@ describe 'Formatar dados para criar arquivo' do
   context 'Formatos inválidos' do
     let(:invoices) {
       Invoice.new(
-        company: company,
+        type: type,
         pay_type: pay_type,
         token: token,
         expiration_date: expiration_date,

@@ -8,10 +8,11 @@ class FileData
 
   def self.build(invoices)
     return 'Only (Array) is accepted as parameter' if invoices.class != Array
+    return '(Array) cannot be empty!' if invoices.empty?
 
     file_data = invoices.map do |invoice|
       new(
-        key: "#{Validate.file_name(invoice.pay_type, invoice.company)}",
+        key: "#{Validate.file_name(pay_type: invoice.pay_type, type: invoice.type)}",
         body: [
           "#{Validate.invoice_token(invoice.token)}"\
           "#{Validate.invoice_due_date(invoice.expiration_date)}"\

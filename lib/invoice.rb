@@ -1,10 +1,10 @@
 require "json"
 
 class Invoice
-  attr_reader :company, :pay_type, :token, :return_date, :expiration_date, :value, :status
+  attr_reader :type, :pay_type, :token, :return_date, :expiration_date, :value, :status
 
-  def initialize(company:, pay_type:, token:, expiration_date:, return_date:'', value:, status:)
-    @company = company
+  def initialize(type:, pay_type:, token:, expiration_date:, return_date:'', value:, status:)
+    @type = type
     @pay_type = pay_type
     @token = token
     @expiration_date = expiration_date
@@ -44,6 +44,7 @@ class Invoice
       file.close
       file
     end
+    done
   end
 
   def self.pay
@@ -56,7 +57,7 @@ class Invoice
 
       invoices << line.map do |item|
         new(
-          company: file_name.split("_")[2].gsub('.TXT',''),
+          type: 'RETORNO',
           pay_type: file_name.split("_")[1],
           token: item.split[1],
           expiration_date: item.split[2],
@@ -65,24 +66,14 @@ class Invoice
           status: '5'
         )
       end
-      system("mv ./invoices/unpaid/#{file_name} ./invoices/in_process/")
     end
 
-    update(invoices.flatten(2))
+    update(invoices.flatten)
   end
 
   def self.done
-    return false unless done?
-    Dir.new("./invoices/in_process").each_child.map  do |file_name|
-      system("rm ./invoices/in_process/#{file_name}")
+    Dir.new("./invoices/unpaid").each_child.map  do |file_name|
+      system("rm ./invoices/unpaid/#{file_name}")
     end
-    true
-  end
-
-  def self.done?
-    paid = Dir.new("./invoices/paid").each_child.map  { |file_name| file_name }.size
-    in_process = Dir.new("./invoices/in_process").each_child.map  { |file_name| file_name }.size
-
-    paid == in_process
   end
 end

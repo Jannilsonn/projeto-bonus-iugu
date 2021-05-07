@@ -5,8 +5,12 @@ class Validate
     @item = item
   end
 
-  def self.file_name(pay_type, company)
-    "#{pay_type.gsub(/\s+/, "").upcase}_#{company.gsub(/\s+/, "").upcase}"
+  def self.file_name(pay_type: '', type: '')
+    if pay_type.empty? || type.empty?
+      'Validate.file_name expected 2 parameters'
+    else
+      "#{pay_type.gsub(/\s+/, "").upcase}_#{type.gsub(/\s+/, "").upcase}"
+    end
   end
 
   def self.total_invoices(data)
