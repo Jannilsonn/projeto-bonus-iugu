@@ -5,8 +5,8 @@ describe 'Gerenciar faturas' do
     let(:invoices) { Invoice.unpaid }
 
     it 'Cunsultar a API e pegar faturas não pagas' do
-      expect(invoices[0].value).to eq '0000007500'
-      expect(invoices[1].value).to eq '0000001000'
+      expect(invoices[0].value).to eq '75.00'
+      expect(invoices[1].value).to eq '10.00'
     end
   end
 
