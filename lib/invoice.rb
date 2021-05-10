@@ -28,7 +28,6 @@ class Invoice
   end
 
   def self.pay
-    create
     invoices = []
     Dir.new("./invoices/unpaid").each_child.map  do |file_name|
       line = File.readlines("invoices/unpaid/#{file_name}")

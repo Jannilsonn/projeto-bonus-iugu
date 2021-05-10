@@ -21,6 +21,8 @@ describe 'Gerenciar faturas' do
   end
 
   context 'Gerar arquivos de faturas pagas' do
+    Invoice.create
+    
     it 'Mudar fatura para paga' do
       Invoice.pay
 

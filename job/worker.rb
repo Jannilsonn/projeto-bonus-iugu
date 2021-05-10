@@ -1,4 +1,7 @@
 require 'sidekiq'
+require './lib/invoice'
+require './lib/file_data'
+require './lib/validate'
 
 Sidekiq.configure_client do |config|
   config.redis = { db: 1 }
@@ -13,15 +16,12 @@ class OurWorker
 
   def perform(complexity)
     case complexity
-    when 'super_hard'
-      sleep 10
-      puts '>>> Super hard'
-    when 'hard'
-      sleep 10
-      puts '>>> Hard'
+    when 'create'
+      Invoice.create
+    when 'pay'
+      Invoice.pay
     else
-      sleep 1
-      puts '>>> Else'
+      puts 'Call does not exist'
     end
   end
 end
