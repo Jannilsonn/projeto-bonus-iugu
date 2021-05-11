@@ -1,11 +1,15 @@
 #!/usr/bin/env sh
 set -e
 
-echo '== iniciando... =='
+echo '== Projeto Bônus =='
+echo
+echo 'Abra uma nova aba do terminal e digite o comando irb -r ./job/worker.rb'
+echo
+echo 'No irb digite OurWorker.perform_async("create") para criar os arquivos de faturas'
+echo
+echo 'Em seguida OurWorker.perform_async("pay") para atualizar os arquivos para pago'
+echo
+echo '== Sidekiq será iniciando =='
 echo
 
-rspec
-
-echo
-echo '== finalizado =='
-echo
+sidekiq -r ./job/worker.rb
