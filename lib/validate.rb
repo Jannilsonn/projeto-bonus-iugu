@@ -6,8 +6,19 @@ class Validate
   end
 
   def self.file_name(pay_type: '', type: '')
+    pay_type = valid_pay_type(pay_type)
+    return pay_type if pay_type.include? 'ERROR:'
+
     return "#{pay_type.gsub(/\s+/, "").upcase}_#{type.gsub(/\s+/, "").upcase}" unless pay_type.empty? || type.empty?
     'ERROR: Validate.file_name expected 2 parameters'
+  end
+
+  def self.valid_pay_type(pay_type)
+    file = File.read('spec/fixtures/pay_type.json')
+    JSON.parse(file, symbolize_names: true).map do |item|
+      return item[:name] if item[:token] == pay_type || item[:name] == pay_type
+    end
+    'ERROR: Validate.valid_pay_type pay type not found'
   end
 
   def self.total_invoices(total: nil)

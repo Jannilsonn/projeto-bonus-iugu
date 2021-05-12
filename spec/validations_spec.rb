@@ -2,8 +2,14 @@ require 'spec_helper'
 
 describe 'Validações de faturas' do
   context 'Nome do documento' do
+    it 'Buscar nome do tipo de pagamento' do
+      pay_type = Validate.valid_pay_type('ebde459820cb7ec54ca5')
+
+      expect(pay_type).to eq 'BOLETO'
+    end
+
     it 'Validar parte do nome do arquivo de fatura' do
-      pay_type = 'Boleto'
+      pay_type = 'ebde459820cb7ec54ca5'
       type = 'EMISSAO'
 
       file_name = Validate.file_name(pay_type: pay_type, type: type)
@@ -11,20 +17,20 @@ describe 'Validações de faturas' do
       expect(file_name).to eq 'BOLETO_EMISSAO'
     end
 
-    it 'Mensagem de erro para nome do arquivo' do
+    it 'Mensagem de erro para nome do arquivo com tipo de pagamento' do
       file_name = Validate.file_name
 
-      expect(file_name).to eq 'ERROR: Validate.file_name expected 2 parameters'
+      expect(file_name).to eq 'ERROR: Validate.valid_pay_type pay type not found'
     end
   end
 
   context 'Total de faturas e valor do montante' do
     let(:invoices) {
       FileData.build([
-        Invoice.new(type: 'EMISSAO', pay_type: 'Boleto',
+        Invoice.new(type: 'EMISSAO', pay_type: 'ebde459820cb7ec54ca5',
                     token: 'HS4JSO69SNM48GDU639D', due_date: '2020-04-20',
                     value: '85.80', status: '1'),
-        Invoice.new(type: 'EMISSAO', pay_type: 'Boleto',
+        Invoice.new(type: 'EMISSAO', pay_type: 'ebde459820cb7ec54ca5',
                     token: 'L0JDKIE64N448HS75M0Y', due_date: '2020-04-20',
                     value: '150.20', status: '1')
       ])

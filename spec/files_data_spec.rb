@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Formatar dados para criar arquivo' do
   let(:type) {'EMISSAO'}
-  let(:pay_type) {'Boleto'}
+  let(:pay_type) {'ebde459820cb7ec54ca5'}
   let(:token) {'HS4JSO69SNM48GDU639D'}
   let(:due_date) {'2020-04-20'}
   let(:value) {'85.80'}

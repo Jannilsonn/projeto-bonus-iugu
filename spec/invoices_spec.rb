@@ -41,7 +41,7 @@ describe 'Gerenciar faturas' do
   end
 
   context 'Mensagens de erros do key para nome do arquivo' do
-    let(:error_file_name) { 'ERROR: Validate.file_name expected 2 parameters' }
+    let(:error_pay_type) { 'ERROR: Validate.valid_pay_type pay type not found' }
     
     it 'Mensagem de erro para nome do arquivo com FileData.build' do
       invoice = FileData.build([
@@ -50,14 +50,14 @@ describe 'Gerenciar faturas' do
                     value: '100.50', status: '1')
       ])
 
-      expect(invoice[:file_name]).to eq error_file_name
+      expect(invoice[:file_name]).to eq error_pay_type
     end
   end
 
   context 'Mensagens de erros do body para token' do
     let(:error_token) { 'ERROR: Validate.invoice_token expected (1) parameter with (20) chars' }
     let(:invoice) {
-      Invoice.new(type: 'EMISSAO', pay_type: 'CARTAODECREDITO',
+      Invoice.new(type: 'EMISSAO', pay_type: '58960b194b31089fc7d2',
         token: '', due_date: '2020-04-20',
         value: '100.50', status: '1')
     }
@@ -78,7 +78,7 @@ describe 'Gerenciar faturas' do
   context 'Mensagens de erros do body para data de vencimento' do
     let(:error_due_date) { 'ERROR: Validate.invoice_due_date expected (1) parameter of type date' }
     let(:invoice) {
-      Invoice.new(type: 'EMISSAO', pay_type: 'CARTAODECREDITO',
+      Invoice.new(type: 'EMISSAO', pay_type: '58960b194b31089fc7d2',
         token: '15a48166c4d2121a7ac7', due_date: '',
         value: '100.50', status: '1')
     }
@@ -99,7 +99,7 @@ describe 'Gerenciar faturas' do
   context 'Mensagens de erros do body para valor da fatura' do
     let(:error_value) { 'ERROR: Validate.invoice_value expected (1) parameter' }
     let(:invoice) {
-      Invoice.new(type: 'EMISSAO', pay_type: 'CARTAODECREDITO',
+      Invoice.new(type: 'EMISSAO', pay_type: '58960b194b31089fc7d2',
         token: '15a48166c4d2121a7ac7', due_date: '2020-04-20',
         value: '', status: '1')
     }
@@ -120,7 +120,7 @@ describe 'Gerenciar faturas' do
   context 'Mensagens de erros do body para valor da fatura' do
     let(:error_status) { 'ERROR: Validate.invoice_status expected (1) parameter' }
     let(:invoice) {
-      Invoice.new(type: 'EMISSAO', pay_type: 'CARTAODECREDITO',
+      Invoice.new(type: 'EMISSAO', pay_type: '58960b194b31089fc7d2',
         token: '15a48166c4d2121a7ac7', due_date: '2020-04-20',
         value: '100.50', status: '')
     }
