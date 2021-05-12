@@ -5,12 +5,9 @@ class Validate
     @item = item
   end
 
-  def self.file_name(pay_type: nil, type: nil)
-    if pay_type && type
-      "#{pay_type.gsub(/\s+/, "").upcase}_#{type.gsub(/\s+/, "").upcase}"
-    else
-      'ERROR: Validate.file_name expected 2 parameters'
-    end
+  def self.file_name(pay_type: '', type: '')
+    return "#{pay_type.gsub(/\s+/, "").upcase}_#{type.gsub(/\s+/, "").upcase}" unless pay_type.empty? || type.empty?
+    'ERROR: Validate.file_name expected 2 parameters'
   end
 
   def self.total_invoices(total: nil)
@@ -21,13 +18,13 @@ class Validate
     end
   end
 
-  def self.invoice_token(token: nil)
+  def self.invoice_token(token: '')
     return "B #{token[0..19]}" if token && token.size == 20
     'ERROR: Validate.invoice_token expected (1) parameter with (20) chars'
   end
 
-  def self.invoice_due_date(expiration_date: nil)
-    return " #{expiration_date.gsub(/\D/, "")}" if expiration_date && expiration_date.gsub(/\D/, "").size == 8
+  def self.invoice_due_date(due_date: '')
+    return " #{due_date.gsub(/\D/, "")}" if due_date && due_date.gsub(/\D/, "").size == 8
     'ERROR: Validate.invoice_due_date expected (1) parameter of type date'
   end
 
@@ -36,13 +33,13 @@ class Validate
     ' 00000000'
   end
 
-  def self.invoice_value(value: nil)
-    return " #{format('%010d', value.gsub(/\D/, "").to_i)}" if value
+  def self.invoice_value(value: '')
+    return " #{format('%010d', value.gsub(/\D/, "").to_i)}" unless value.empty?
     'ERROR: Validate.invoice_value expected (1) parameter'
   end
 
-  def self.invoice_status(status: nil)
-    return " #{format('%02d', status.gsub(/\D/, "").to_i)}\n" if status
+  def self.invoice_status(status: '')
+    return " #{format('%02d', status.gsub(/\D/, "").to_i)}\n" unless status.empty?
     'ERROR: Validate.invoice_status expected (1) parameter'
   end
 
