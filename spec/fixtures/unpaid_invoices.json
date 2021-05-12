@@ -1,6 +1,5 @@
 [
     {
-        "type": "EMISSAO",
         "pay_type": "947b6430bcb21b49b9d5",
         "token": "0841908bc678b307185b",
         "due_date": "2020-04-15",
@@ -8,7 +7,6 @@
         "status": "01"
     },
     {
-        "type": "EMISSAO",
         "pay_type": "58960b194b31089fc7d2",
         "token": "75f33a55f1ea086c7c01",
         "due_date": "2020-04-17",
@@ -16,7 +14,6 @@
         "status": "01"
     },
     {
-        "type": "EMISSAO",
         "pay_type": "947b6430bcb21b49b9d5",
         "token": "68c0914009d45b20ba02",
         "due_date": "2020-04-20",
@@ -24,7 +21,6 @@
         "status": "01"
     },
     {
-        "type": "EMISSAO",
         "pay_type": "ebde459820cb7ec54ca5",
         "token": "b9eb8bef0fcc9f97558a",
         "due_date": "2020-04-19",
@@ -32,7 +28,6 @@
         "status": "01"
     },
     {
-        "type": "EMISSAO",
         "pay_type": "ebde459820cb7ec54ca5",
         "token": "1c3f6077297182ab9ef6",
         "due_date": "2020-04-19",
@@ -40,7 +35,6 @@
         "status": "01"
     },
     {
-        "type": "EMISSAO",
         "pay_type": "58960b194b31089fc7d2",
         "token": "0bd9fccc1b9d8cd5f176",
         "due_date": "2020-04-20",
@@ -48,7 +42,6 @@
         "status": "01"
     },
     {
-        "type": "EMISSAO",
         "pay_type": "58960b194b31089fc7d2",
         "token": "15a48166c4d2121a7ac7",
         "due_date": "2020-04-20",
@@ -56,7 +49,6 @@
         "status": "01"
     },
     {
-        "type": "EMISSAO",
         "pay_type": "947b6430bcb21b49b9d5",
         "token": "1760e40fc3fa06c03954",
         "due_date": "2020-04-19",

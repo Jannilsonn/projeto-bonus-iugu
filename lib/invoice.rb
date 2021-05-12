@@ -3,7 +3,7 @@ require "json"
 class Invoice
   attr_reader :type, :pay_type, :token, :return_date, :due_date, :value, :status
 
-  def initialize(type:, pay_type:, token:, due_date:, return_date:'', value:, status:)
+  def initialize(type: 'EMISSAO', pay_type:, token:, due_date:, return_date:'', value:, status:)
     @type = type
     @pay_type = pay_type
     @token = token
