@@ -6,7 +6,7 @@ describe 'Formatar dados para criar arquivo' do
   let(:token) {'HS4JSO69SNM48GDU639D'}
   let(:due_date) {'2020-04-20'}
   let(:value) {'85.80'}
-  let(:status) {'1'}
+  let(:status) {'pending'}
 
   context 'Formatos válidos' do
     let(:invoices) {

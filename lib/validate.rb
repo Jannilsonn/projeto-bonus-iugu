@@ -50,10 +50,20 @@ class Validate
   end
 
   def self.invoice_status(status: '')
+    status = valid_status(status)
+    return status if status.include? 'ERROR:'
+
     return " #{format('%02d', status.gsub(/\D/, "").to_i)}\n" unless status.empty?
     'ERROR: Validate.invoice_status expected (1) parameter'
   end
 
+  def self.valid_status(status)
+    file = File.read('spec/fixtures/status.json')
+    JSON.parse(file, symbolize_names: true).map do |item|
+      return item[:value] if item[:value] == status || item[:name] == status
+    end
+    'ERROR: Validate.valid_status pay type not found'
+  end
 
   def self.total_invoice_amount(amount: nil)
     if amount&.body

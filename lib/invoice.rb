@@ -37,7 +37,7 @@ class Invoice
           due_date: item.split[2],
           return_date: "#{Time.now.strftime("%Y%m%d")}",
           value: item.split[4],
-          status: '5'
+          status: 'success'
         )
       end
     end

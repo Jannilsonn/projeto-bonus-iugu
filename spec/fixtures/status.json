@@ -1,0 +1,22 @@
+[
+    {
+        "name": "pending",
+        "value": "01"
+    },
+    {
+        "name": "success",
+        "value": "05"
+    },
+    {
+        "name": "without_credit",
+        "value": "09"
+    },
+    {
+        "name": "incorrect_data",
+        "value": "10"
+    },
+    {
+        "name": "refused",
+        "value": "11"
+    }
+]

@@ -47,7 +47,7 @@ describe 'Gerenciar faturas' do
       invoice = FileData.build([
         Invoice.new(type: 'emissao', pay_type: '',
                     token: '15a48166c4d2121a7ac7', due_date: '2020-04-20',
-                    value: '100.50', status: '1')
+                    value: '100.50', status: 'pending')
       ])
 
       expect(invoice[:file_name]).to eq error_pay_type
@@ -59,7 +59,7 @@ describe 'Gerenciar faturas' do
     let(:invoice) {
       Invoice.new(type: 'EMISSAO', pay_type: '58960b194b31089fc7d2',
         token: '', due_date: '2020-04-20',
-        value: '100.50', status: '1')
+        value: '100.50', status: 'pending')
     }
     
     it 'Mensagem de erro para token com FileData.build' do
@@ -80,7 +80,7 @@ describe 'Gerenciar faturas' do
     let(:invoice) {
       Invoice.new(type: 'EMISSAO', pay_type: '58960b194b31089fc7d2',
         token: '15a48166c4d2121a7ac7', due_date: '',
-        value: '100.50', status: '1')
+        value: '100.50', status: 'pending')
     }
 
     it 'Mensagem de erro para data de vencimento com FileData.build' do
@@ -101,7 +101,7 @@ describe 'Gerenciar faturas' do
     let(:invoice) {
       Invoice.new(type: 'EMISSAO', pay_type: '58960b194b31089fc7d2',
         token: '15a48166c4d2121a7ac7', due_date: '2020-04-20',
-        value: '', status: '1')
+        value: '', status: 'pending')
     }
 
     it 'Mensagem de erro para valor da fatura com FileData.build' do
@@ -117,21 +117,21 @@ describe 'Gerenciar faturas' do
     end
   end
 
-  context 'Mensagens de erros do body para valor da fatura' do
-    let(:error_status) { 'ERROR: Validate.invoice_status expected (1) parameter' }
+  context 'Mensagens de erros do body para status da fatura' do
+    let(:error_status) { 'ERROR: Validate.valid_status pay type not found' }
     let(:invoice) {
       Invoice.new(type: 'EMISSAO', pay_type: '58960b194b31089fc7d2',
         token: '15a48166c4d2121a7ac7', due_date: '2020-04-20',
         value: '100.50', status: '')
     }
 
-    it 'Mensagem de erro para valor da fatura com FileData.build' do
+    it 'Mensagem de erro para status da fatura com FileData.build' do
       error = FileData.build([invoice])
 
       expect(error[:status]).to eq error_status
     end
 
-    it 'Mensagem de erro para valor da fatura com Invoice.create' do
+    it 'Mensagem de erro para status da fatura com Invoice.create' do
       error = Invoice.create([invoice])
 
       expect(error[:status]).to eq error_status

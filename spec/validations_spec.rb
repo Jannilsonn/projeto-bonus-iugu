@@ -29,10 +29,10 @@ describe 'Validações de faturas' do
       FileData.build([
         Invoice.new(type: 'EMISSAO', pay_type: 'ebde459820cb7ec54ca5',
                     token: 'HS4JSO69SNM48GDU639D', due_date: '2020-04-20',
-                    value: '85.80', status: '1'),
+                    value: '85.80', status: 'pending'),
         Invoice.new(type: 'EMISSAO', pay_type: 'ebde459820cb7ec54ca5',
                     token: 'L0JDKIE64N448HS75M0Y', due_date: '2020-04-20',
-                    value: '150.20', status: '1')
+                    value: '150.20', status: 'pending')
       ])
     }
 
@@ -105,7 +105,7 @@ describe 'Validações de faturas' do
 
   context 'Status de uma fatura' do
     it 'Validar status de uma fatura' do
-      status = Validate.invoice_status(status: '1')
+      status = Validate.invoice_status(status: 'pending')
 
       expect(status).to eq " 01\n"
     end
@@ -113,7 +113,7 @@ describe 'Validações de faturas' do
     it 'Mensagem de erro para status de uma fatura' do
       status = Validate.invoice_status
 
-      expect(status).to eq 'ERROR: Validate.invoice_status expected (1) parameter'
+      expect(status).to eq 'ERROR: Validate.valid_status pay type not found'
     end
   end
 end
