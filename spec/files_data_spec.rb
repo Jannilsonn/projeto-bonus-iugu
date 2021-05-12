@@ -4,7 +4,7 @@ describe 'Formatar dados para criar arquivo' do
   let(:type) {'EMISSAO'}
   let(:pay_type) {'Boleto'}
   let(:token) {'HS4JSO69SNM48GDU639D'}
-  let(:expiration_date) {'2020-04-20'}
+  let(:due_date) {'2020-04-20'}
   let(:value) {'85.80'}
   let(:status) {'1'}
 
@@ -14,7 +14,7 @@ describe 'Formatar dados para criar arquivo' do
         type: type,
         pay_type: pay_type,
         token: token,
-        expiration_date: expiration_date,
+        due_date: due_date,
         value: value,
         status: status
       )]
@@ -38,7 +38,7 @@ describe 'Formatar dados para criar arquivo' do
         type: type,
         pay_type: pay_type,
         token: token,
-        expiration_date: expiration_date,
+        due_date: due_date,
         value: value,
         status: status
       )

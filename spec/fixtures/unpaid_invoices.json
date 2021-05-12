@@ -3,7 +3,7 @@
         "type": "EMISSAO",
         "pay_type": "PIX",
         "token": "0841908bc678b307185b",
-        "expiration_date": "2020-04-15",
+        "due_date": "2020-04-15",
         "value": "75.00",
         "status": "01"
     },
@@ -11,7 +11,7 @@
         "type": "EMISSAO",
         "pay_type": "CARTAODECREDITO",
         "token": "75f33a55f1ea086c7c01",
-        "expiration_date": "2020-04-17",
+        "due_date": "2020-04-17",
         "value": "10.00",
         "status": "01"
     },
@@ -19,7 +19,7 @@
         "type": "EMISSAO",
         "pay_type": "PIX",
         "token": "68c0914009d45b20ba02",
-        "expiration_date": "2020-04-20",
+        "due_date": "2020-04-20",
         "value": "30.50",
         "status": "01"
     },
@@ -27,7 +27,7 @@
         "type": "EMISSAO",
         "pay_type": "BOLETO",
         "token": "b9eb8bef0fcc9f97558a",
-        "expiration_date": "2020-04-19",
+        "due_date": "2020-04-19",
         "value": "80.00",
         "status": "01"
     },
@@ -35,7 +35,7 @@
         "type": "EMISSAO",
         "pay_type": "BOLETO",
         "token": "1c3f6077297182ab9ef6",
-        "expiration_date": "2020-04-19",
+        "due_date": "2020-04-19",
         "value": "35.00",
         "status": "01"
     },
@@ -43,7 +43,7 @@
         "type": "EMISSAO",
         "pay_type": "CARTAODECREDITO",
         "token": "0bd9fccc1b9d8cd5f176",
-        "expiration_date": "2020-04-20",
+        "due_date": "2020-04-20",
         "value": "54.99",
         "status": "01"
     },
@@ -51,7 +51,7 @@
         "type": "EMISSAO",
         "pay_type": "CARTAODECREDITO",
         "token": "15a48166c4d2121a7ac7",
-        "expiration_date": "2020-04-20",
+        "due_date": "2020-04-20",
         "value": "100.50",
         "status": "01"
     },
@@ -59,7 +59,7 @@
         "type": "EMISSAO",
         "pay_type": "PIX",
         "token": "1760e40fc3fa06c03954",
-        "expiration_date": "2020-04-19",
+        "due_date": "2020-04-19",
         "value": "35.00",
         "status": "01"
     }

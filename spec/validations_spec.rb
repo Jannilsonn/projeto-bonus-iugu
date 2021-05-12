@@ -22,10 +22,10 @@ describe 'Validações de faturas' do
     let(:invoices) {
       FileData.build([
         Invoice.new(type: 'EMISSAO', pay_type: 'Boleto',
-                    token: 'HS4JSO69SNM48GDU639D', expiration_date: '2020-04-20',
+                    token: 'HS4JSO69SNM48GDU639D', due_date: '2020-04-20',
                     value: '85.80', status: '1'),
         Invoice.new(type: 'EMISSAO', pay_type: 'Boleto',
-                    token: 'L0JDKIE64N448HS75M0Y', expiration_date: '2020-04-20',
+                    token: 'L0JDKIE64N448HS75M0Y', due_date: '2020-04-20',
                     value: '150.20', status: '1')
       ])
     }
@@ -71,15 +71,15 @@ describe 'Validações de faturas' do
 
   context 'Data de vencimento' do
     it 'Validar data de vencimento' do
-      expiration_date = Validate.invoice_due_date(expiration_date: '2020-04-20')
+      due_date = Validate.invoice_due_date(due_date: '2020-04-20')
 
-      expect(expiration_date).to eq ' 20200420'
+      expect(due_date).to eq ' 20200420'
     end
 
     it 'Mensagem de erro para data de vencimento' do
-      expiration_date = Validate.invoice_due_date
+      due_date = Validate.invoice_due_date
 
-      expect(expiration_date).to eq 'ERROR: Validate.invoice_due_date expected (1) parameter of type date'
+      expect(due_date).to eq 'ERROR: Validate.invoice_due_date expected (1) parameter of type date'
     end
   end
 

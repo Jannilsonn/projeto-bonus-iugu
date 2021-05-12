@@ -1,13 +1,13 @@
 require "json"
 
 class Invoice
-  attr_reader :type, :pay_type, :token, :return_date, :expiration_date, :value, :status
+  attr_reader :type, :pay_type, :token, :return_date, :due_date, :value, :status
 
-  def initialize(type:, pay_type:, token:, expiration_date:, return_date:'', value:, status:)
+  def initialize(type:, pay_type:, token:, due_date:, return_date:'', value:, status:)
     @type = type
     @pay_type = pay_type
     @token = token
-    @expiration_date = expiration_date
+    @due_date = due_date
     @return_date = return_date
     @value = value
     @status = status
@@ -22,11 +22,6 @@ class Invoice
     doc(invoices, 'unpaid')
   end
 
-  def self.update(invoices)
-    doc(invoices, 'paid')
-    done
-  end
-
   def self.pay
     invoices = []
     Dir.new("./invoices/unpaid").each_child.map  do |file_name|
@@ -39,7 +34,7 @@ class Invoice
           type: 'RETORNO',
           pay_type: file_name.split("_")[1],
           token: item.split[1],
-          expiration_date: item.split[2],
+          due_date: item.split[2],
           return_date: "#{Time.now.strftime("%Y%m%d")}",
           value: item.split[4],
           status: '5'
@@ -48,6 +43,13 @@ class Invoice
     end
 
     update(invoices.flatten)
+  end
+
+  private
+
+  def self.update(invoices)
+    doc(invoices, 'paid')
+    done
   end
 
   def self.done
