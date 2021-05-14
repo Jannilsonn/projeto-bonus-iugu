@@ -1,3 +1,5 @@
+require 'pry'
+
 class FileData
   attr_reader :key, :body
 
@@ -11,6 +13,7 @@ class FileData
     return 'ERROR: (Array) cannot be empty!' if invoices.empty?
 
     all_errors = errors(invoices)
+    
     return all_errors unless all_errors.empty?
 
     file_data = format(invoices)
@@ -21,25 +24,23 @@ class FileData
   private
 
   def self.errors(file_data)
+    file_data.filter_map { |invoice| set_error(invoice) }.first
+  end
+
+  def self.set_error(invoice)
     all_errors = {}
-    
-    file_data.filter_map do |invoice|
-      file_name = Validate.file_name(pay_type: invoice.pay_type, type: invoice.type)
-      all_errors[:file_name] = file_name if file_name.include? 'ERROR:'
-
-      token = Validate.invoice_token(token: invoice.token)
-      all_errors[:token] = token if token.include? 'ERROR:'
-
-      due_date = Validate.invoice_due_date(due_date: invoice.due_date)
-      all_errors[:due_date] = due_date if due_date.include? 'ERROR:'
-
-      value = Validate.invoice_value(value: invoice.value)
-      all_errors[:value] = value if value.include? 'ERROR:'
-
-      status = Validate.invoice_status(status: invoice.status)
-      all_errors[:status] = status if status.include? 'ERROR:'
+    invoice.instance_variables.each do |attr|
+      attr_format = "#{attr}".gsub('@','')
+      if attr_format == 'type' || attr_format == 'pay_type'        
+        validate = eval("Validate.file_name(pay_type: invoice.pay_type, type: invoice.type)")
+        eval("all_errors[:file_name] = validate if validate.include? 'ERROR:'")
+      else
+        if attr_format != 'return_date'
+          validate = eval("Validate.invoice_#{attr_format}(#{attr_format}: invoice.#{attr_format})")
+          eval("all_errors[:#{attr_format}] = validate if validate.include? 'ERROR:'")
+        end
+      end
     end
-    
     all_errors
   end
 

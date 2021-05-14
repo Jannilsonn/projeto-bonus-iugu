@@ -2,6 +2,7 @@ require 'sidekiq'
 require './lib/invoice'
 require './lib/file_data'
 require './lib/validate'
+require './lib/api'
 
 Sidekiq.configure_client do |config|
   config.redis = { db: 1 }

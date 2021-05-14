@@ -1,3 +1,4 @@
+require 'pry'
 class Validate
   attr_reader :item
 
@@ -14,8 +15,7 @@ class Validate
   end
 
   def self.valid_pay_type(pay_type)
-    file = File.read('spec/fixtures/pay_type.json')
-    JSON.parse(file, symbolize_names: true).map do |item|
+    Api.client.get('pay_types').body.map do |item|
       return item[:name] if item[:token] == pay_type || item[:name] == pay_type
     end
     'ERROR: Validate.valid_pay_type pay type not found'

@@ -1,1 +1,2 @@
-/invoices
+/invoices/unpaid/*
+/invoices/paid/*

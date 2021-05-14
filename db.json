@@ -56,5 +56,20 @@
 			"value": "35.00",
 			"status": "pending"
 		}
+	],
+
+	"pay_types": [
+		{
+			"name": "PIX",
+			"token": "947b6430bcb21b49b9d5"
+		},
+		{
+			"name": "BOLETO",
+			"token": "ebde459820cb7ec54ca5"
+		},
+		{
+			"name": "CARTAODECREDITO",
+			"token": "58960b194b31089fc7d2"
+		}
 	]
 }

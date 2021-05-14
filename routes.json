@@ -1,4 +1,5 @@
 {
   "/api/v1/*": "/$1",
-  "/invoices/:token": "/invoices?token=:token"
+  "/invoices/:token": "/invoices?token=:token",
+  "/pay_types/:token": "/pay_types?token=:token"
 }
