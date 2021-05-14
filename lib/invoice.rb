@@ -14,8 +14,7 @@ class Invoice
   end
 
   def self.unpaid
-    file = File.read('spec/fixtures/unpaid_invoices.json')
-    JSON.parse(file, symbolize_names: true).map { |item| new(**item) }
+    Api.client.get('invoices').body.map { |item| new(**item) }
   end
 
   def self.create(invoices = unpaid)
